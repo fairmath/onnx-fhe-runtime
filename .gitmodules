@@ -1,0 +1,6 @@
+[submodule "libs/openfhe-development"]
+	path = libs/openfhe-development
+	url = git@github.com:openfheorg/openfhe-development.git
+[submodule "libs/onnxruntime"]
+	path = libs/onnxruntime
+	url = git@github.com:microsoft/onnxruntime.git

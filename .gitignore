@@ -1,0 +1,5 @@
+.build
+out
+.vscode
+CMakePresets.json
+example/*.bin

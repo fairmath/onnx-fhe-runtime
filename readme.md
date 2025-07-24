@@ -1,7 +1,7 @@
 # Fairmath ONNX FHE Runtime
 
 ## Description
-
+ONNX FHE Runtime is a set of FHE basd ONNX components to build privacy preserving AI models.
 
 ## How To Build
 * Install CMake 3.22(or above), gcc or clang 

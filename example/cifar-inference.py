@@ -34,7 +34,7 @@ def generate_keys():
 
 
 option = ort.SessionOptions()
-option.register_custom_ops_library(os.getcwd()+'/../.build/install/lib/libonnx-fhe-runtime.so')
+option.register_custom_ops_library(os.getcwd()+'/../build/install/lib/libonnx-fhe-runtime.so')
 
 onnx_opset = OperatorSetIdProto()
 onnx_opset.domain = ''  # default domain: 'ai.onnx'
@@ -56,7 +56,7 @@ saver = OperatorSetIdProto()
 saver.domain = 'fhe.ckks.saver'
 saver.version = 1
 
-sess = ort.InferenceSession('fhe-mlp-cifar10.onnx', sess_options=option)
+sess = ort.InferenceSession('fhe-mlp-cifar10.1.onnx', sess_options=option)
 
 cc, kp = generate_keys()
 
@@ -84,8 +84,9 @@ rk_np = np.array(['rk.bin'], dtype=object)
 mk_np = np.array([''], dtype=object)
 cc_np = np.array(['cc.bin'], dtype=object)
 c1_np = np.array(['c1.bin'], dtype=object)
+pk_np = np.array([''], dtype=object)
 
-results = sess.run(None, {'cc': cc_np, 'rk': rk_np, 'mk': mk_np, 'in': c1_np})
+results = sess.run(None, {'cc': cc_np, 'rk': rk_np, 'mk': mk_np, 'in': c1_np, 'pk': pk_np})
 
 rc, ok = DeserializeCiphertext(results[0][0], BINARY)
 if not ok:

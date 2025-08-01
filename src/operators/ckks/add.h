@@ -3,16 +3,17 @@
 #include <onnxruntime_c_api.h>
 #include <onnxruntime_cxx_api.h>
 
-namespace operators { namespace ckks {
+namespace operators {
+namespace ckks {
 
 struct CKKSAddKernel {
-	CKKSAddKernel(OrtApi api, const OrtKernelInfo* info);
+    CKKSAddKernel(OrtApi api, const OrtKernelInfo* info);
 
-	void Compute(OrtKernelContext* context);
+    void Compute(OrtKernelContext* context);
 
-private:
-	OrtApi api_;
-	Ort::ConstKernelInfo kinfo_;
+   private:
+    OrtApi api_;
 };
 
-} }
+}  // namespace ckks
+}  // namespace operators

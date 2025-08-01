@@ -4,3 +4,4 @@
 #include <operators/ckks/matmul.h>
 #include <operators/ckks/serialize.h>
 #include <operators/ckks/square.h>
+#include <operators/ckks/svm.h>

@@ -37,6 +37,7 @@ set(SOURCES
     operators/ckks/matmul.cpp
     operators/ckks/serialize.cpp
     operators/ckks/square.cpp
+    operators/ckks/svm.cpp
     init.cpp
 )
 

@@ -1,5 +1,5 @@
-#include <string>
 #include <random>
+#include <string>
 
 #include "tools.h"
 
@@ -7,8 +7,8 @@ namespace tools {
 
 std::string rndstr(size_t length) {
     const std::string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    std::random_device rd; 
-    std::mt19937 gen(rd()); 
+    std::random_device rd;
+    std::mt19937 gen(rd());
 
     std::uniform_int_distribution<> dist(0, charset.size() - 1);
 
@@ -21,4 +21,4 @@ std::string rndstr(size_t length) {
     return result;
 }
 
-}
+}  // namespace tools

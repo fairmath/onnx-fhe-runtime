@@ -125,10 +125,11 @@ inputs = [
     onnx.helper.make_tensor_value_info('mk', onnx.TensorProto.STRING, [1]),
     onnx.helper.make_tensor_value_info('rk', onnx.TensorProto.STRING, [1]),
     onnx.helper.make_tensor_value_info('in', onnx.TensorProto.STRING, [1]),
+    onnx.helper.make_tensor_value_info('pk', onnx.TensorProto.STRING, [1]),
 ]
 outputs = [onnx.helper.make_tensor_value_info('out', onnx.TensorProto.STRING, [1])]
 nodes = [
-    onnx.helper.make_node('fhe.ckks.loader', ['cc', 'rk', 'mk', 'in'], ['cctx', 'icphr'], domain='fhe.ckks.loader'),
+    onnx.helper.make_node('fhe.ckks.loader', ['cc', 'rk', 'mk', 'in', 'pk'], ['cctx', 'icphr', 'pubkey'], domain='fhe.ckks.loader'),
     onnx.helper.make_node('fhe.ckks.matmul', ['cctx', 'icphr', 'w1'], ['layer1'], domain='fhe.ckks.matmul'),
     onnx.helper.make_node('fhe.ckks.square', ['cctx', 'layer1'], ['s1'], domain='fhe.ckks.square'),
     onnx.helper.make_node('fhe.ckks.matmul', ['cctx', 's1', 'w2'], ['layer2'], domain='fhe.ckks.matmul'),
@@ -137,7 +138,7 @@ nodes = [
 graph = onnx.helper.make_graph(nodes, 'cifar10', inputs=inputs, outputs=outputs, initializer=initializers)
 
 onnx_opset = OperatorSetIdProto()
-onnx_opset.domain = ''  # Это domain по умолчанию: 'ai.onnx'
+onnx_opset.domain = '' 
 onnx_opset.version = 22
 
 matmul = OperatorSetIdProto()
@@ -160,5 +161,5 @@ model = onnx.helper.make_model(graph, opset_imports=[onnx_opset, matmul, square,
 model.ir_version = 10
 
 mstr = model.SerializeToString()
-with open('fhe-mlp-cifar10.1.onnx', 'wb') as f:
+with open('fhe-mlp-cifar10.onnx', 'wb') as f:
     f.write(mstr)
